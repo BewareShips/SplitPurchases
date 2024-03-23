@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using SplitPurchases.Application.Common.Exceptions;
 using SplitPurchases.Application.Interfaces;
 using SplitPurchases.Domain.Entities;
 using System;
@@ -23,9 +24,13 @@ namespace SplitPurchases.Application.Application.Commands.AddUser
             var group = await _context.Groups.FindAsync(request.GroupId);
             var user = await _context.Users.FindAsync(request.UserId);
 
-            if (group == null || user == null)
+            if (group == null)
             {
-                return false; // group or user didn't find
+                throw new NotFoundException(nameof(group), request.GroupId);
+            }
+            if ( user == null)
+            {
+                throw new NotFoundException(nameof(user), request.UserId);
             }
             var UserAlreadyInGroup = await _context.UserGroups.AnyAsync(ug => ug.UserId == request.UserId && ug.GroupId == request.GroupId);
             if (UserAlreadyInGroup)
