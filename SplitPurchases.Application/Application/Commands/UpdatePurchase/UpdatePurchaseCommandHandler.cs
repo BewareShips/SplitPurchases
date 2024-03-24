@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using SplitPurchases.Application.Common.Exceptions;
 using SplitPurchases.Application.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -22,7 +21,7 @@ namespace SplitPurchases.Application.Application.Commands.UpdatePurchase
             var purchase = await _context.Purchases.FindAsync(request.PurchaseId);
             if (purchase == null)
             {
-                throw new NotFoundException(nameof(purchase), request.PurchaseId);
+                return false;
             }
             purchase.Amount = request.Amount ?? purchase.Amount;
             purchase.Name = request.Name ?? purchase.Name;
