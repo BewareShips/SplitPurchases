@@ -17,6 +17,7 @@ namespace SplitPurchases.Persistence
 
         public DbSet<User> Users { get; set; }
         public DbSet<UserGroup> UserGroups { get; set; }
+        public DbSet<GroupInvitation> GroupInvitations { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

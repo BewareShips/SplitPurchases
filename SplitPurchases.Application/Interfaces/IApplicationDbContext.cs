@@ -10,6 +10,7 @@ namespace SplitPurchases.Application.Interfaces
         DbSet<Purchase> Purchases { get; set;}
         DbSet<User> Users { get; set; }
         DbSet<UserGroup> UserGroups { get; set; }
+        DbSet<GroupInvitation>GroupInvitations { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 
     }

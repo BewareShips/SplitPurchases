@@ -24,6 +24,7 @@ namespace SplitPurchases.Application.Application.Commands.DeletePurchase
                 throw new NotFoundException(nameof(purchase),request.PurchaseId);
             }
             _context.Purchases.Remove(purchase);
+            await _context.SaveChangesAsync(cancellationToken);
             return true;
         }
     }
