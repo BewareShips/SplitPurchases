@@ -12,7 +12,7 @@ namespace SplitPurchases.Persistence
         public static void Initialize(ApplicationDbContext context)
         {
             // Applied all necessary migrations if necessary, creates database if missing
-            context.Database.Migrate();
+            context.Database.EnsureCreated();
         }
     }
 }

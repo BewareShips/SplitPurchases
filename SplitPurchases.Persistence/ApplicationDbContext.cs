@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SplitPurchases.Application.Interfaces;
 using SplitPurchases.Domain.Entities;
+using SplitPurchases.Persistence.EntityTypeConfiguration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace SplitPurchases.Persistence
 
         public DbSet<User> Users { get; set; }
         public DbSet<UserGroup> UserGroups { get; set; }
+        public DbSet<GroupInvitation> GroupInvitations { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
@@ -28,6 +30,7 @@ namespace SplitPurchases.Persistence
         {
             //here we can customize models using Fluent Api
             base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new UserGroupConfiguration());
         }
     }
 }

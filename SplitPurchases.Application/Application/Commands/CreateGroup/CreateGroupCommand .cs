@@ -10,10 +10,12 @@ namespace SplitPurchases.Application.Application.Commands.CreateGroup
     public class CreateGroupCommand : IRequest<Guid>
     {
         public string GroupName { get; set; }
+        public Guid CreatorId { get; set; }
 
-        public CreateGroupCommand(string groupName)
+        public CreateGroupCommand(string groupName, Guid creatorId)
         {
             GroupName = groupName;
+            CreatorId = creatorId;
         }
     }
 }

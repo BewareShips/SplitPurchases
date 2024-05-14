@@ -26,6 +26,11 @@ namespace SplitPurchases.Application.Application.Commands.CreateGroup
 
             _context.Groups.Add(group);
             await _context.SaveChangesAsync(cancellationToken);
+
+            //Adding creator to the group
+            var userGroup = new UserGroup { GroupId = group.GroupId, UserId = request.CreatorId };
+            _context.UserGroups.Add(userGroup);
+            await  _context.SaveChangesAsync(cancellationToken);
             return group.GroupId;
         }
     }

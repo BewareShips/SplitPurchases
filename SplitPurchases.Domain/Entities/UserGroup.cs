@@ -13,6 +13,6 @@ namespace SplitPurchases.Domain.Entities
         public User User { get; set; }
         public Guid GroupId { get; set; }
         public Group Group { get; set; }
-
+        public decimal Balance { get; set; }
     }
 }

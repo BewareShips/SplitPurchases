@@ -15,6 +15,7 @@ namespace SplitPurchases.Persistence.EntityTypeConfiguration
         {
             builder.ToTable("UserGroups");
             builder.HasKey(ug => new {ug.UserId, ug.GroupId});
+            builder.Property(p => p.Balance).HasColumnType("decimal(18,2)").IsRequired();
             builder.HasOne(ug => ug.User).WithMany(u => u.UserGroups).HasForeignKey(ug => ug.UserId);
             builder.HasOne(ug => ug.Group).WithMany(g => g.UserGroups).HasForeignKey(ug => ug.GroupId);
         }
