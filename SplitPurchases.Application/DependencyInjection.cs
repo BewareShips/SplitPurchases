@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using SplitPurchases.Application.Application.Services.Balance;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace SplitPurchases.Application
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
                 typeof(SplitPurchases.Application.Application.Commands.CreateUser.CreateUserCommandHandler).GetTypeInfo().Assembly
 ));
+            services.AddScoped<IBalanceService, BalanceService>();
             return services;
         }
     }
