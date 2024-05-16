@@ -27,8 +27,8 @@ namespace SplitPurchases.Application.Application.Commands.UpdatePurchase
                 throw new NotFoundException(nameof(purchase), request.PurchaseId);
             }
 
-            bool isAmountChanged = request.Amount.HasValue && request.Amount.Value != purchase.Amount;
-            purchase.Amount = request.Amount ?? purchase.Amount;
+            bool isAmountChanged = purchase.Amount != request.Amount;
+            purchase.Amount = request.Amount;
             purchase.Name = request.Name ?? purchase.Name;
             purchase.Description = request.Description ?? purchase.Description;
             purchase.PurchaseStatus = PurchaseStatus.Updated;
