@@ -29,7 +29,7 @@ namespace SplitPurchases.Application.Application.Commands.CreatePurchase
                 UserId = request.UserId,
                 Amount = request.Amount,
                 Name = request.Name,
-                Description = request.Description,
+                Description = request.Description ?? request.Description,
                 PurchaseStatus = PurchaseStatus.Created,
                 PurchaseDate = DateTime.Now,
             };

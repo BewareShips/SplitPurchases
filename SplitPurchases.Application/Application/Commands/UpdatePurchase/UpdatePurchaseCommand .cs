@@ -10,7 +10,7 @@ namespace SplitPurchases.Application.Application.Commands.UpdatePurchase
     public class UpdatePurchaseCommand:IRequest<bool>
     {
         public Guid PurchaseId { get; set; }
-        public decimal ? Amount { get; set; }
+        public decimal  Amount { get; set; }
         public string Name { get; set; }
         public string Description {  get; set; }
         public UpdatePurchaseCommand(Guid purchaseId, decimal amount, string name,string description) { 

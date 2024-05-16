@@ -1,12 +1,11 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using SplitPurchases.Application.Application.Services.Balance;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using FluentValidation;
+using SplitPurchases.Application.Common.Behaviors;
+using SplitPurchases.Application.Application.Commands.CreateUser;
+
 
 namespace SplitPurchases.Application
 {
@@ -14,9 +13,12 @@ namespace SplitPurchases.Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
-                typeof(SplitPurchases.Application.Application.Commands.CreateUser.CreateUserCommandHandler).GetTypeInfo().Assembly
-));
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
+            typeof(SplitPurchases.Application.Application.Commands.CreateUser.CreateUserCommandHandler).GetTypeInfo().Assembly
+        ));
+            
+            services.AddValidatorsFromAssemblies(new[] { Assembly.GetExecutingAssembly() });
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             services.AddScoped<IBalanceService, BalanceService>();
             return services;
         }
