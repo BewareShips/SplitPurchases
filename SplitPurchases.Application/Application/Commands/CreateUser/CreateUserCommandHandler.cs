@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using SplitPurchases.Application.Application.Services.Balance;
 using SplitPurchases.Application.Interfaces;
 using SplitPurchases.Domain.Entities;
 using System;
@@ -27,6 +28,7 @@ namespace SplitPurchases.Application.Application.Commands.CreateUser
             };
             _context.Users.Add(user);
             await _context.SaveChangesAsync(cancellationToken);
+            await _bala
             return user.UserId;
         }
     }
