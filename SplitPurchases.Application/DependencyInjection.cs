@@ -16,8 +16,8 @@ namespace SplitPurchases.Application
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
             typeof(SplitPurchases.Application.Application.Commands.CreateUser.CreateUserCommandHandler).GetTypeInfo().Assembly
         ));
-            
-            services.AddValidatorsFromAssemblies(new[] { Assembly.GetExecutingAssembly() });
+
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             services.AddScoped<IBalanceService, BalanceService>();
             return services;

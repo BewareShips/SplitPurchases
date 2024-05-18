@@ -3,6 +3,7 @@ using SplitPurchases.Application;
 using SplitPurchases.Application.Common.Mappings;
 using SplitPurchases.Application.Interfaces;
 using SplitPurchases.Persistence;
+using SplitPurchases.WebApi.Middleware;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -40,6 +41,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"));
 }
 
+app.UseCustomExceptionHandler();
 app.UseHttpsRedirection();
 app.UseCors("MyCorsPolicy");
 app.UseRouting();
